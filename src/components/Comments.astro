@@ -1,0 +1,80 @@
+---
+// Giscus 评论组件：评论数据存储在仓库的 GitHub Discussions 里。
+// 前置条件（只需做一次）：
+//   1. 仓库已开启 Discussions（已完成）
+//   2. 安装 Giscus App：https://github.com/apps/giscus → 授权到本仓库
+//   没装 App 时，评论区会显示 giscus 的提示，装完即自动生效。
+const GISCUS = {
+	repo: 'xiayu519/xiayu519.github.io',
+	repoId: 'R_kgDOTbT50g',
+	category: 'Announcements',
+	categoryId: 'DIC_kwDOTbT50s4DBYds',
+	mapping: 'pathname',
+	reactionsEnabled: '1',
+	inputPosition: 'bottom',
+	lang: 'zh-CN',
+};
+---
+
+<section class="comments" data-pagefind-ignore aria-label="评论">
+	<h2 class="comments-title">评论</h2>
+	<div class="giscus"></div>
+</section>
+
+<script is:inline define:vars={{ g: GISCUS }}>
+	(() => {
+		const box = document.querySelector('.giscus');
+		if (!box) return;
+		const themeOf = () => (document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+
+		// 动态注入 giscus client，初始主题跟随当前站点主题
+		const s = document.createElement('script');
+		s.src = 'https://giscus.app/client.js';
+		s.setAttribute('data-repo', g.repo);
+		s.setAttribute('data-repo-id', g.repoId);
+		s.setAttribute('data-category', g.category);
+		s.setAttribute('data-category-id', g.categoryId);
+		s.setAttribute('data-mapping', g.mapping);
+		s.setAttribute('data-strict', '1');
+		s.setAttribute('data-reactions-enabled', g.reactionsEnabled);
+		s.setAttribute('data-emit-metadata', '0');
+		s.setAttribute('data-input-position', g.inputPosition);
+		s.setAttribute('data-theme', themeOf());
+		s.setAttribute('data-lang', g.lang);
+		s.setAttribute('data-loading', 'lazy');
+		s.crossOrigin = 'anonymous';
+		s.async = true;
+		box.appendChild(s);
+
+		// 明暗主题联动：监听 <html data-theme> 变化，通知 giscus iframe 切换主题
+		new MutationObserver(() => {
+			const iframe = document.querySelector('iframe.giscus-frame');
+			if (!iframe) return;
+			iframe.contentWindow.postMessage(
+				{ giscus: { setConfig: { theme: themeOf() } } },
+				'https://giscus.app',
+			);
+		}).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+	})();
+</script>
+
+<style>
+	.comments {
+		margin-top: 3.5rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--border);
+	}
+	.comments-title {
+		margin: 0 0 1.25rem;
+		font-size: 1.2rem;
+		font-weight: 750;
+		color: var(--text-strong);
+	}
+	/* 让 giscus 占满阅读宽度 */
+	.comments :global(.giscus) {
+		min-height: 4rem;
+	}
+	.comments :global(.giscus-frame) {
+		width: 100%;
+	}
+</style>
