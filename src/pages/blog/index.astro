@@ -1,0 +1,31 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { countTaxonomy, slugify } from '../../utils/posts';
+import { getPublishedPosts } from '../../utils/posts';
+
+const posts = await getPublishedPosts();
+const categories = countTaxonomy(posts, 'category');
+---
+
+<PageLayout title="文章" wide>
+	<p class="page-lead">共 {posts.length} 篇文章。按时间倒序排列。</p>
+
+	{categories.size > 0 && (
+		<section class="section-head"><h2>按分类</h2></section>
+		<ul class="chip-list" style="margin-bottom:2rem">
+			{[...categories.entries()].map(([name, count]) => (
+				<li>
+					<a class="chip" href={`/categories/${slugify(name)}/`}>
+						{name}<span class="num">{count}</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	)}
+
+	<section class="section-head"><h2>全部文章</h2></section>
+	<ul class="post-list">
+		{posts.map((post) => <li><PostCard post={post} /></li>)}
+	</ul>
+</PageLayout>

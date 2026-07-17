@@ -1,0 +1,25 @@
+---
+import { GITHUB_URL, SITE_AUTHOR } from '../consts';
+const year = new Date().getFullYear();
+---
+
+<footer data-pagefind-ignore>
+	<div class="footer-inner">
+		<p>© {year} {SITE_AUTHOR}. 记录问题，也记录答案。</p>
+		<div>
+			<a href="/rss.xml">RSS</a>
+			<a href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub</a>
+			<a href="/about/">关于</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	footer { margin-top: 5rem; border-top: 1px solid var(--border); color: var(--text-muted); }
+	.footer-inner { display: flex; width: min(1180px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 3rem; justify-content: space-between; gap: 1rem; font-size: .86rem; }
+	.footer-inner p { margin: 0; }
+	.footer-inner div { display: flex; gap: 1rem; }
+	.footer-inner a { color: inherit; text-decoration: none; }
+	.footer-inner a:hover { color: var(--accent); }
+	@media (max-width: 640px) { .footer-inner { flex-direction: column; } }
+</style>

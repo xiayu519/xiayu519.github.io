@@ -1,0 +1,38 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getPublishedPosts } from '../utils/posts';
+import { SITE_AUTHOR } from '../consts';
+
+// 让归档页等能引用到文章数，同时给关于页一个稳定的总览。
+const posts = await getPublishedPosts();
+---
+
+<PageLayout
+	title="关于"
+	description="xiayu519 的个人介绍：游戏客户端开发者，专注 Cocos Creator、TypeScript 与 AI 工程化，开源框架 Tyou 的作者。"
+>
+	<p class="page-lead">这里是 {SITE_AUTHOR} 的个人技术站点。</p>
+
+	<div class="prose">
+		<p>
+			我是 {SITE_AUTHOR}，一名游戏客户端开发者。主要使用 Cocos Creator 与 TypeScript，
+			长期关注客户端框架、生产链路效率，以及 AI 在真实工程中的落地方式。
+		</p>
+		<p>
+			这个站点用来沉淀我在以下方向上的实践与思考：
+		</p>
+		<ul>
+			<li><strong>游戏开发</strong>：UI、资源、事件、网络、配置表与编辑器扩展；</li>
+			<li><strong>Cocos Creator</strong>：框架设计、PSD 到 UI 的生产流水线、2D Shader；</li>
+			<li><strong>AI 工程化</strong>：Codex / GPT 工作流、AGENTS 分层指令、可验证的 AI 协作；</li>
+			<li><strong>工程实践</strong>：上下文治理、授权边界、回归验证与长期知识维护。</li>
+		</ul>
+		<p>
+			我维护的开源框架 <a href="https://github.com/xiayu519/Tyou" target="_blank" rel="noreferrer">Tyou</a>
+			是一个面向 Cocos Creator 3.8.7 的 TypeScript 客户端框架，
+			同时也在尝试成为一个适合长期 AI 协作的工程样本。可以在
+			<a href="/projects/">项目页</a>了解更多。
+		</p>
+		<p>目前站点共有 {posts.length} 篇文章，欢迎通过下方的 GitHub 与我交流。</p>
+	</div>
+</PageLayout>

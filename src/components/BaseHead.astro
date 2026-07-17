@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import type { ImageMetadata } from 'astro';
+import { Font } from 'astro:assets';
+import { SITE_AUTHOR, SITE_TITLE } from '../consts';
+
+interface Props {
+	title: string;
+	description: string;
+	image?: ImageMetadata | string;
+	type?: 'website' | 'article';
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description, image = '/social-card.png', type = 'website' } = Astro.props;
+const imagePath = typeof image === 'string' ? image : image.src;
+const socialImage = new URL(imagePath, Astro.site);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<meta name="author" content={SITE_AUTHOR} />
+<meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('/rss.xml', Astro.site)} />
+<link rel="canonical" href={canonicalURL} />
+<Font cssVariable="--font-atkinson" preload />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content={SITE_TITLE} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImage} />
+<meta property="og:locale" content="zh_CN" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImage} />
+
+<script is:inline>
+	(() => {
+		const stored = localStorage.getItem('theme');
+		const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		document.documentElement.dataset.theme = stored || preferred;
+	})();
+</script>

@@ -1,0 +1,36 @@
+---
+import type { BlogPost } from '../utils/posts';
+import { getPostUrl, getReadingMinutes, slugify } from '../utils/posts';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props { post: BlogPost; compact?: boolean; }
+const { post, compact = false } = Astro.props;
+---
+
+<article class:list={['post-card', { compact }]}>
+	<div class="post-meta">
+		<a class="category" href={`/categories/${slugify(post.data.category)}/`}>{post.data.category}</a>
+		<span><FormattedDate date={post.data.pubDate} /></span>
+		<span>{getReadingMinutes(post.body)} 分钟阅读</span>
+	</div>
+	<h2><a href={getPostUrl(post)}>{post.data.title}</a></h2>
+	<p>{post.data.description}</p>
+	<div class="tags">
+		{post.data.tags.slice(0, compact ? 3 : 5).map((tag) => <a href={`/tags/${slugify(tag)}/`}>#{tag}</a>)}
+	</div>
+</article>
+
+<style>
+	.post-card { padding: 1.5rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface); transition: transform .2s ease, border-color .2s ease; }
+	.post-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+	.post-card.compact { padding: 1.15rem 1.25rem; }
+	.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .75rem; color: var(--text-subtle); font-size: .78rem; }
+	.category { color: var(--accent); font-weight: 750; text-decoration: none; }
+	h2 { margin: .65rem 0 .6rem; font-size: clamp(1.15rem, 2.2vw, 1.55rem); line-height: 1.35; }
+	h2 a { color: var(--text-strong); text-decoration: none; }
+	h2 a:hover { color: var(--accent); }
+	p { margin: 0; color: var(--text-muted); font-size: .94rem; }
+	.tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+	.tags a { padding: .22rem .55rem; border-radius: 999px; background: var(--surface-strong); color: var(--text-muted); font-size: .74rem; text-decoration: none; }
+	.tags a:hover { color: var(--accent); }
+</style>

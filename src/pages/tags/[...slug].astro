@@ -1,0 +1,32 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedPosts, slugify } from '../../utils/posts';
+
+export async function getStaticPaths() {
+	const posts = await getPublishedPosts();
+	const byTag = new Map<string, typeof posts>();
+	for (const post of posts) {
+		for (const tag of post.data.tags) {
+			const arr = byTag.get(tag) ?? [];
+			arr.push(post);
+			byTag.set(tag, arr);
+		}
+	}
+	return [...byTag.entries()].map(([tag, list]) => ({
+		params: { slug: slugify(tag) },
+		props: { tag, list },
+	}));
+}
+
+const { tag, list } = Astro.props;
+---
+
+<PageLayout title={`标签：#${tag}`}>
+	<p class="page-lead">
+		标签：<strong>#{tag}</strong> · 共 {list.length} 篇 · <a href="/tags/">← 所有标签</a>
+	</p>
+	<ul class="post-list">
+		{list.map((post) => <li><PostCard post={post} /></li>)}
+	</ul>
+</PageLayout>

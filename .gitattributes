@@ -1,0 +1,14 @@
+# 默认所有文本文件使用 LF 行尾（本机 Windows、CI Linux，统一避免漂移）
+* text=auto eol=lf
+
+# 二进制资源：不做行尾转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary

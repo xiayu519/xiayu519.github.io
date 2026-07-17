@@ -1,0 +1,91 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { projects } from '../../data/projects';
+---
+
+<PageLayout title="项目" wide>
+	<p class="page-lead">我维护的开源项目与长期工程。这里只放真正在用、在持续迭代的东西。</p>
+	<ul class="project-list">
+		{projects.map((project) => (
+			<li class="project-card">
+				<div class="project-head">
+					<h2><a href={project.url} target="_blank" rel="noreferrer">{project.name}</a></h2>
+					<span class="status" data-status={project.status}>{project.status}</span>
+				</div>
+				<p>{project.description}</p>
+				{project.repo && (
+					<p class="repo">
+						<a href={`https://github.com/${project.repo}`} target="_blank" rel="noreferrer">
+							github.com/{project.repo}
+						</a>
+					</p>
+				)}
+				<div class="tags">
+					{project.tags.map((tag) => <span class="tag">#{tag}</span>)}
+				</div>
+			</li>
+		))}
+	</ul>
+</PageLayout>
+
+<style>
+	.project-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1rem;
+	}
+	.project-card {
+		padding: 1.5rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		background: var(--surface);
+	}
+	.project-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+	.project-head h2 {
+		margin: 0;
+		font-size: 1.3rem;
+	}
+	.project-head h2 a {
+		color: var(--text-strong);
+		text-decoration: none;
+	}
+	.project-head h2 a:hover {
+		color: var(--accent);
+	}
+	.status {
+		flex: 0 0 auto;
+		padding: 0.2rem 0.6rem;
+		border-radius: 999px;
+		font-size: 0.75rem;
+		font-weight: 700;
+		background: var(--accent-soft);
+		color: var(--accent);
+	}
+	.project-card p {
+		margin: 0.7rem 0 0;
+		color: var(--text-muted);
+	}
+	.repo {
+		font-size: 0.85rem !important;
+	}
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin-top: 1rem;
+	}
+	.tag {
+		padding: 0.22rem 0.55rem;
+		border-radius: 999px;
+		background: var(--surface-strong);
+		color: var(--text-muted);
+		font-size: 0.74rem;
+	}
+</style>

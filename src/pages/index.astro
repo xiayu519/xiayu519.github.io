@@ -1,0 +1,107 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { GITHUB_URL, SITE_AUTHOR } from '../consts';
+import { getPublishedPosts } from '../utils/posts';
+
+const posts = await getPublishedPosts();
+const featured = posts.filter((p) => p.data.featured);
+const latest = posts.slice(0, 6);
+const total = posts.length;
+---
+
+<PageLayout wide title={undefined}>
+	<section class="hero">
+		<div class="hero-mark">X</div>
+		<h1>{SITE_AUTHOR} · 技术札记</h1>
+		<p class="hero-lead">
+			记录游戏开发、Cocos Creator、AI 工程化与长期工程实践。写清楚问题，也写清楚答案。
+		</p>
+		<div class="hero-actions">
+			<a class="btn primary" href="/blog/">浏览文章</a>
+			<a class="btn" href="/projects/">看看项目</a>
+			<a class="btn ghost" href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub →</a>
+		</div>
+	</section>
+
+	{featured.length > 0 && (
+		<section class="section-head">
+			<h2>精选</h2>
+			<span class="count">共 {total} 篇</span>
+		</section>
+		<ul class="post-list">
+			{featured.map((post) => <li><PostCard post={post} /></li>)}
+		</ul>
+	)}
+
+	<section class="section-head">
+		<h2>最新文章</h2>
+		<a href="/blog/">查看全部 →</a>
+	</section>
+	<ul class="post-list">
+		{latest.map((post) => <li><PostCard post={post} compact /></li>)}
+	</ul>
+</PageLayout>
+
+<style is:global>
+	.hero {
+		text-align: center;
+		padding: 2.5rem 0 3rem;
+	}
+	.hero-mark {
+		display: inline-grid;
+		place-items: center;
+		width: 3.5rem;
+		height: 3.5rem;
+		margin-bottom: 1rem;
+		border-radius: 1rem;
+		background: var(--accent);
+		color: #fff;
+		font-weight: 900;
+		font-size: 1.6rem;
+	}
+	.hero h1 {
+		font-size: clamp(2rem, 5vw, 3rem);
+		margin-bottom: 0.5rem;
+	}
+	.hero-lead {
+		max-width: 36rem;
+		margin: 0 auto 1.6rem;
+		color: var(--text-muted);
+		font-size: 1.1rem;
+	}
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		justify-content: center;
+	}
+	.btn {
+		display: inline-block;
+		padding: 0.6rem 1.1rem;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		color: var(--text-strong) !important;
+		font-weight: 650;
+		font-size: 0.92rem;
+		text-decoration: none !important;
+		transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+	}
+	.btn:hover {
+		transform: translateY(-1px);
+		border-color: var(--accent);
+	}
+	.btn.primary {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff !important;
+	}
+	.btn.primary:hover {
+		background: var(--accent-strong);
+		border-color: var(--accent-strong);
+	}
+	.btn.ghost {
+		background: transparent;
+	}
+</style>
