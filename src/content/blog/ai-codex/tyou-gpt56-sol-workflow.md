@@ -1,6 +1,6 @@
 ---
 title: 'Tyou 的 GPT-5.6 Sol 原生工作流'
-description: '不是给项目加一个 AI，而是把项目改造成 AI 能理解、能约束、能验证的系统。记录 Tyou 基于 GPT-5.6 Sol 与 Codex 的原生工程工作流。'
+description: '前言：不是给项目加一个 AI，而是把项目改造成 AI 能理解、能约束、能验证的系统。记录 Tyou 基于 GPT-5.6 Sol 与 Codex 的原生工程工作流。'
 pubDate: 'Jul 17 2026'
 updatedDate: 'Jul 17 2026'
 category: 'AI 工程化'
@@ -10,7 +10,6 @@ featured: true
 slug: 'tyou-gpt56-sol-workflow'
 ---
 
-抛砖引玉一下。
 
 Tyou 是一个基于 Cocos Creator 3.8.7 与 TypeScript 的客户端框架。它解决的不只是 UI、资源、事件、网络和配置表问题，也在尝试回答另一个越来越现实的问题：当 AI 真正进入长期工程后，怎样让它不只“会写代码”，而是能够在复杂仓库中稳定地理解边界、执行任务并证明结果。
 
