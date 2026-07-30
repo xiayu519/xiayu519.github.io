@@ -9,6 +9,21 @@ featured: true
 slug: 'unity-slg-infinite-zoom'
 ---
 
+> 在进入技术拆解之前，可以先通过下面的演示观察无极缩放在不同地图尺度之间的连续转换。
+
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 1.5rem 0 0.75rem; overflow: hidden; border-radius: 12px; background: #000;">
+  <iframe
+    src="https://player.bilibili.com/player.html?bvid=BV1Vp346aEZW&page=1&high_quality=1&danmaku=0&autoplay=0"
+    title="无极缩放演示"
+    loading="lazy"
+    allow="fullscreen; autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen
+    style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
+  ></iframe>
+</div>
+
+[在哔哩哔哩打开演示视频](https://www.bilibili.com/video/BV1Vp346aEZW/)
+
 SLG 大地图中的“无极缩放”，并不是把一张高精度地图一直拉远。它真正做的是：用连续变化的摄像机驱动一组离散的 LOD，在不同距离下更换地形、城市、世界对象和 HUD 的表达方式。
 
 这套实现最值得研究的不是缩放动画，而是四个互相咬合的系统：
