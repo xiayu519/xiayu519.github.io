@@ -663,3 +663,19 @@ LOD 发生变化时，系统设置一次强制刷新。下一次地图更新会�
 昼夜则独立于地图实例，通过状态机控制环境光、方向光和 Shader 全局环境色，再由夜景材质、辉光面和粒子补充建筑局部效果。
 
 无极缩放真正的设计重点不是“准备多少个低模”，而是决定每一层还需要表达什么，并让地图粒度、对象语义、AOI 范围和资源生命周期同时服从这个目标。
+
+<aside class="source-code-card" aria-labelledby="source-code-title">
+  <div class="source-code-copy">
+    <p class="source-code-eyebrow">完整 Unity 工程</p>
+    <h2 id="source-code-title">获取单机无极缩放源码</h2>
+    <p>这是一个基于 <strong>Unity 6</strong> 制作的单机无极缩放功能演示，仅包含地图无极缩放相关内容，不包含战斗、联网或其他游戏系统。获取前请确认它符合你的需要。</p>
+    <p>如果这套实现对你有帮助，也可以请我喝杯咖啡，获取完整 Unity 源码。感谢支持原创与持续分享。</p>
+    <p>付款后，请通过我的 <a href="https://github.com/xiayu519" target="_blank" rel="noreferrer">GitHub 主页</a>上公开的 QQ 联系我。</p>
+  </div>
+  <div class="source-code-payment">
+    <div class="source-code-qr-placeholder" role="img" aria-label="支付宝收款码图片待添加">
+      收款码图片待添加
+    </div>
+    <p>使用支付宝扫码</p>
+  </div>
+</aside>
