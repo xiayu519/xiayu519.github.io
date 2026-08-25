@@ -673,9 +673,7 @@ LOD 发生变化时，系统设置一次强制刷新。下一次地图更新会�
     <p>付款后，请通过我的 <a href="https://github.com/xiayu519" target="_blank" rel="noreferrer">GitHub 主页</a>上公开的 QQ 联系我。</p>
   </div>
   <div class="source-code-payment">
-    <div class="source-code-qr-placeholder" role="img" aria-label="支付宝收款码图片待添加">
-      收款码图片待添加
-    </div>
+    <img src="/images/zhifubao.jpg" alt="支付宝收款码，金额 19.90 元" width="1280" height="1920" loading="lazy" />
     <p>使用支付宝扫码</p>
   </div>
 </aside>

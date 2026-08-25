@@ -399,8 +399,7 @@ tbody tr:nth-child(even) {
 .source-code-payment {
 	text-align: center;
 }
-.source-code-payment img,
-.source-code-qr-placeholder {
+.source-code-payment img {
 	width: 100%;
 	max-width: 220px;
 	margin: 0 auto 0.65rem;
@@ -412,14 +411,6 @@ tbody tr:nth-child(even) {
 .source-code-payment img {
 	display: block;
 	height: auto;
-}
-.source-code-qr-placeholder {
-	display: grid;
-	aspect-ratio: 3 / 4;
-	place-items: center;
-	padding: 1rem;
-	color: var(--text-subtle);
-	font-size: 0.85rem;
 }
 .source-code-payment p {
 	margin: 0;
@@ -550,8 +541,7 @@ tbody tr:nth-child(even) {
 		grid-template-columns: 1fr;
 		gap: 1.4rem;
 	}
-	.source-code-payment img,
-	.source-code-qr-placeholder {
+	.source-code-payment img {
 		max-width: 260px;
 	}
 	.post-nav {
