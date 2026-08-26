@@ -671,6 +671,7 @@ LOD 发生变化时，系统设置一次强制刷新。下一次地图更新会�
     <p>这是一个基于 <strong>Unity 6</strong> 制作的单机无极缩放功能演示，仅包含地图无极缩放相关内容，不包含战斗、联网或其他游戏系统。获取前请确认它符合你的需要。</p>
     <p>如果这套实现对你有帮助，也可以请我喝杯咖啡，获取完整 Unity 源码。感谢支持原创与持续分享。</p>
     <p>付款后，请通过我的 <a href="https://github.com/xiayu519" target="_blank" rel="noreferrer">GitHub 主页</a>上公开的 QQ 联系我。</p>
+    <p>添加作者 QQ 后，请第一时间发送付款截图；作者看到消息后会尽快回复。</p>
   </div>
   <div class="source-code-payment">
     <img src="/images/zhifubao.jpg" alt="支付宝收款码，金额 19.90 元" width="1280" height="1920" loading="lazy" />
